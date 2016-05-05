@@ -20,18 +20,18 @@ def test_hierarchical_softmax(timesteps = 15, input_dim = 50, batch_size = 32,
     
     
     model.compile(loss={'hs':hs_categorical_crossentropy}, optimizer='adam')
-    print "hs model compiled"    
+    print("hs model compiled")     
     
     model2 = Sequential()
     model2.add(TimeDistributedDense(output_dim, 
                     batch_input_shape=(batch_size, timesteps, input_dim)))
     model2.add(Activation('softmax'))    
     model2.compile(loss='categorical_crossentropy', optimizer='adam')
-    print "softmax model compiled"
+    print("softmax model compiled") 
     
     learn_f = np.random.normal(size = (input_dim, output_dim))
     learn_f = np.divide(learn_f, norm(learn_f, axis=1)[:,None])
-    print "learn_f generated"
+    print("learn_f generated")
     
     
     for j in range(epochs):    
@@ -40,7 +40,7 @@ def test_hierarchical_softmax(timesteps = 15, input_dim = 50, batch_size = 32,
         batch_data= generate_batch(learn_f, batch_size, 
                                    timesteps, input_dim, output_dim, batches)
             
-        print "Epoch", j, "data genrated"
+        print("Epoch", j, "data genrated")
          
         p = Progbar(batches * batch_size)
         for b in batch_data:
