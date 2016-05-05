@@ -1,4 +1,4 @@
-
+from __future__ import printfunction
 from hierarchical_softmax import HierarchicalSoftmax, hs_categorical_crossentropy
 from keras.utils.generic_utils import Progbar
 from keras.models import Sequential, Graph
